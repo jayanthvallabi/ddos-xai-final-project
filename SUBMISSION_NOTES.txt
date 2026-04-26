@@ -1,0 +1,25 @@
+DDoS XAI Final Project - Submission Notes
+
+This cleaned package removes the .venv virtual environment and Python cache folders.
+Do NOT submit .venv. Recreate the environment using:
+
+Windows PowerShell:
+  python -m venv .venv
+  .\.venv\Scripts\activate
+  pip install -r requirements.txt
+
+Main dataset included:
+  data/processed/nsl_clean_full.csv
+
+Important folders:
+  src/                 Source code for preprocessing, training, evaluation, and SHAP
+  data/processed/      Cleaned datasets
+  artifacts/models/    Saved trained model artifacts
+  artifacts/figures/   Generated plots/reports
+  notebooks/           EDA notes
+
+Suggested run commands:
+  python -m src.models.train_rf --data data/processed/nsl_clean_full.csv --model artifacts/models/rf_nsl.joblib
+  python -m src.models.train_if --data data/processed/nsl_clean_full.csv --model artifacts/models/if_nsl.joblib
+  python -m src.evaluation.evaluate --data data/processed/nsl_clean_full.csv --models artifacts/models/rf_nsl.joblib artifacts/models/if_nsl.joblib --report artifacts/figures/nsl_eval.txt
+  python -m src.explain.shap_plots --data data/processed/nsl_clean_full.csv --model artifacts/models/rf_nsl.joblib --out_dir artifacts/figures/shap_rf_nsl

@@ -1,0 +1,19 @@
+== artifacts/models/rf_nsl_synth.joblib ==
+Accuracy: 0.9607
+Precision: 0.9826
+Recall: 0.7511
+F1: 0.8514
+ROC-AUC: 0.9850
+Confusion Matrix:
+[[2544    6]
+ [ 112  338]]
+
+== artifacts/models/if_nsl_synth.joblib ==
+IF metrics (threshold at -1):
+Accuracy: 0.7947
+Precision: 0.2587
+Recall: 0.1978
+F1: 0.2242
+Confusion Matrix:
+[[2295  255]
+ [ 361   89]]
