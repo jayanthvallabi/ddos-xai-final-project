@@ -198,7 +198,7 @@ else:
     st.warning("Plots folder not found.")
 st.header("7. Live API Prediction Test")
 
-api_url = st.text_input("API URL", "http://127.0.0.1:8000/predict")
+api_url = st.text_input("API URL", "https://ddos-xai-final-project.onrender.com/predict")
 
 if st.button("Send Sample to Live API"):
     sample = {
