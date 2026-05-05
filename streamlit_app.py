@@ -261,7 +261,7 @@ else:
 # ---------------------------------------------------------
 # Advanced XAI Explanation
 # ---------------------------------------------------------
-
+api_url = st.text_input(...)
 st.header("8. Advanced XAI Explanation")
 
 st.write(
@@ -428,3 +428,57 @@ if df is not None and rf_model is not None:
 
 else:
     st.warning("Dataset or Random Forest model is not loaded.")
+
+# ---------------------------------------------------------
+# Live Cloud API Prediction Test
+# ---------------------------------------------------------
+
+st.header("7. Live Cloud API Prediction Test")
+
+st.write(
+    "This section sends a sample traffic record to the deployed FastAPI backend on Render "
+    "and returns live predictions from the cloud model."
+)
+
+api_url = st.text_input(
+    "API URL",
+    "https://ddos-xai-final-project.onrender.com/predict"
+)
+
+if st.button("Send Sample to Live API"):
+    sample = {
+        "duration": 1,
+        "src_bytes": 5000,
+        "dst_bytes": 200,
+        "count": 300,
+        "srv_count": 250,
+        "dst_host_count": 255,
+        "dst_host_srv_count": 255,
+        "wrong_fragment": 0,
+        "urgent": 0,
+        "hot": 0,
+        "num_failed_logins": 0,
+        "logged_in": 0,
+        "num_compromised": 0,
+        "root_shell": 0,
+        "su_attempted": 0,
+        "num_root": 0,
+        "num_file_creations": 0,
+        "num_access_files": 0,
+        "num_outbound_cmds": 0,
+        "is_host_login": 0,
+        "is_guest_login": 0
+    }
+
+    try:
+        response = requests.post(api_url, json=sample, timeout=30)
+
+        if response.status_code == 200:
+            st.success("Cloud API response received successfully.")
+            st.json(response.json())
+        else:
+            st.error(f"API returned error code: {response.status_code}")
+            st.text(response.text)
+
+    except Exception as e:
+        st.error(f"API connection failed: {e}")
