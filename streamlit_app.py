@@ -261,7 +261,11 @@ else:
 # ---------------------------------------------------------
 # Advanced XAI Explanation
 # ---------------------------------------------------------
-api_url = st.text_input(...)
+api_url = st.text_input(
+    "API URL",
+    value="https://ddos-xai-final-project.onrender.com/predict",
+    key="live_cloud_api_url"
+)
 st.header("8. Advanced XAI Explanation")
 
 st.write(
